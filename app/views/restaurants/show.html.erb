@@ -1,0 +1,17 @@
+<h1><%= @restaurant.name %></h1>
+<p>Adress: <%= @restaurant.address %></p>
+<p>Category: <%= @restaurant.category %></p>
+<%= link_to "Submit review", new_restaurant_review_path(@restaurant) %>
+
+<p><strong>Reviews</strong></p>
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %></li>
+    <li class="list-group-item"><%= review.rating %></li>
+    <%= link_to "Delete",
+    review_path(review),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+  <% end %>
+</ul>
+<br>
